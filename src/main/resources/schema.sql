@@ -1,0 +1,1 @@
+/* Skrypt tworzący tabele i relacje SQL

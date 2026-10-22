@@ -1,0 +1,1 @@
+// Model encji Przydział / Obsada
