@@ -1,0 +1,1 @@
+// Klaudia - Sprawdzanie zasad przedmiotu

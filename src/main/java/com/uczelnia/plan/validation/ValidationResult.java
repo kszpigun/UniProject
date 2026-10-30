@@ -1,0 +1,1 @@
+// Klaudia zbior bledow (do zwrotu do GUI)
