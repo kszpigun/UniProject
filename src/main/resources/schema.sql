@@ -24,5 +24,4 @@ CREATE TABLE Przydzial (
     FOREIGN KEY (przedmiot_id) REFERENCES Przedmiot(id)
     z_bledami BOOLEAN DEFAULT FALSE,
     komunikaty_bledow VARCHAR(1000),
-    chuj
 );
