@@ -24,4 +24,10 @@ CREATE TABLE Przydzial (
     FOREIGN KEY (przedmiot_id) REFERENCES Przedmiot(id)
     z_bledami BOOLEAN DEFAULT FALSE,
     komunikaty_bledow VARCHAR(1000),
+
+    CREATE TABLE Przedmiot (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nazwa VARCHAR(255),
+    wersja BIGINT DEFAULT 0
+
 );
