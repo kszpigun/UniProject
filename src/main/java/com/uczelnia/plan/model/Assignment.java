@@ -18,6 +18,12 @@ public class Przydzial {
     @ManyToOne
     @JoinColumn(name = "przedmiot_id")
     private Przedmiot przedmiot;
+    @Column(name = "z_bledami")
+    private boolean zBledami;
 
+    @Column(name = "komunikaty_bledow")
+    private String komunikatyBledow;
+
+    
     // Wygeneruj Gettery i Settery
 }
