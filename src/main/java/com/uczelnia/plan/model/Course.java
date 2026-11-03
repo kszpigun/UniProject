@@ -9,5 +9,8 @@ public class Przedmiot {
     
     private String nazwa;
 
+    @Version
+    private Long wersja;
+
     // Wygeneruj Gettery i Settery
 }// Model encji Przedmiot
