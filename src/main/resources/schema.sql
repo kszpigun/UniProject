@@ -22,4 +22,6 @@ CREATE TABLE Przydzial (
     FOREIGN KEY (pracownik_id) REFERENCES Pracownik(id),
     FOREIGN KEY (grupa_studencka_id) REFERENCES GrupaStudencka(id),
     FOREIGN KEY (przedmiot_id) REFERENCES Przedmiot(id)
+    z_bledami BOOLEAN DEFAULT FALSE,
+    komunikaty_bledow VARCHAR(1000),
 );
