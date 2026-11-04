@@ -1,57 +1,52 @@
 package com.uczelnia.plan.gui.component;
 
-import com.uczelnia.plan.dto.WorkloadCardDTO;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.paint.Color;
-import javafx.util.Callback;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import java.awt.Color;
+import java.awt.Component;
 
 /**
- * Komponent do renderowania komórek tabeli z uwzględnieniem statusu walidacji.
+ * Komponent do renderowania komórek tabeli z uwzględnieniem statusu walidacji w Swing.
  */
-public class StatusCellRenderer {
+public class StatusCellRenderer<T> extends DefaultTableCellRenderer {
 
-    // Kolory do oznaczania statusu
-    private static final String ERROR_STYLE = "-fx-background-color: #ffcccc; -fx-text-fill: darkred;";
-    private static final String OK_STYLE = "-fx-background-color: #ccffcc; -fx-text-fill: darkgreen;";
-    private static final String DEFAULT_STYLE = "";
+    private final ValidationCondition<T> condition;
+    private final TableModelRowProvider<T> rowProvider;
 
-    /**
-     * Zwraca fabrykę komórek dla kolumny typu Integer (np. kolumna z sumą godzin).
-     * Jeśli pracownik ma przekroczony limit lub nie wyrabia pensum, komórka będzie czerwona.
-     */
-    public static <T> Callback<TableColumn<T, Integer>, TableCell<T, Integer>> getIntegerCellFactory(
-            ValidationCondition<T> condition) {
-        
-        return column -> new TableCell<T, Integer>() {
-            @Override
-            protected void updateItem(Integer item, boolean empty) {
-                super.updateItem(item, empty);
-                
-                if (empty || item == null) {
-                    setText(null);
-                    setStyle(DEFAULT_STYLE);
-                } else {
-                    setText(item.toString());
-                    
-                    // Wywołanie warunku określającego czy dany wiersz zawiera błąd
-                    T rowData = getTableRow().getItem();
-                    if (rowData != null) {
-                        if (condition.hasError(rowData)) {
-                            setStyle(ERROR_STYLE);
-                        } else {
-                            setStyle(OK_STYLE);
-                        }
-                    }
-                }
-            }
-        };
+    public StatusCellRenderer(TableModelRowProvider<T> rowProvider, ValidationCondition<T> condition) {
+        this.rowProvider = rowProvider;
+        this.condition = condition;
     }
 
-    /**
-     * Interfejs pomocniczy określający warunek błędu dla danego obiektu w wierszu.
-     */
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value,
+                                                   boolean isSelected, boolean hasFocus,
+                                                   int row, int column) {
+        // Pobierz domyślny wygląd komórki
+        Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+        // Pobierz obiekt dla danego wiersza z modelu
+        int modelRow = table.convertRowIndexToModel(row);
+        T rowData = rowProvider.getRowData(modelRow);
+
+        if (!isSelected) { // Nie nadpisujemy koloru zaznaczenia
+            if (rowData != null && condition.hasError(rowData)) {
+                c.setBackground(new Color(255, 204, 204)); // Jasnoczerwony
+                c.setForeground(new Color(139, 0, 0));     // Ciemnoczerwony tekst
+            } else {
+                c.setBackground(new Color(204, 255, 204)); // Jasnozielony
+                c.setForeground(new Color(0, 100, 0));     // Ciemnozielony tekst
+            }
+        }
+
+        return c;
+    }
+
     public interface ValidationCondition<T> {
         boolean hasError(T rowData);
+    }
+
+    public interface TableModelRowProvider<T> {
+        T getRowData(int rowIndex);
     }
 }
