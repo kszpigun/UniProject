@@ -1,20 +1,20 @@
-CREATE TABLE Pracownik (
+CREATE TABLE IF NOT EXISTS Pracownik (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     imie VARCHAR(255),
     nazwisko VARCHAR(255)
 );
 
-CREATE TABLE GrupaStudencka (
+CREATE TABLE IF NOT EXISTS GrupaStudencka (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     nazwa VARCHAR(255)
 );
 
-CREATE TABLE Przedmiot (
+CREATE TABLE IF NOT EXISTS Przedmiot (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     nazwa VARCHAR(255)
 );
 
-CREATE TABLE Przydzial (
+CREATE TABLE IF NOT EXISTS Przydzial (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     pracownik_id BIGINT,
     grupa_studencka_id BIGINT,
@@ -25,7 +25,7 @@ CREATE TABLE Przydzial (
     z_bledami BOOLEAN DEFAULT FALSE,
     komunikaty_bledow VARCHAR(1000),
 
-    CREATE TABLE Przedmiot (
+    CREATE TABLE IF NOT EXISTS Przedmiot (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     nazwa VARCHAR(255),
     wersja BIGINT DEFAULT 0
