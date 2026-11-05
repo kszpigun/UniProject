@@ -31,7 +31,7 @@
 [ ] src/main/java/com/uczelnia/plan/gui/MainLayoutController.java (Główny okno aplikacji i menu nawigacyjne)
 [ ] src/main/java/com/uczelnia/plan/gui/EmployeeFormController.java (Formularz dodawania i edycji pracownika)
 [ ] src/main/java/com/uczelnia/plan/gui/CourseFormController.java (Formularz edycji przedmiotu i przydzielania prowadzących)
-[ ] src/main/java/com/uczelnia/plan/service/PlanAccessService.java (Zarządzanie uprawnieniami koordynatora oraz spójnością zapisu w trybie multi-user)
+przejecie przez KLAUDIA [ ] src/main/java/com/uczelnia/plan/service/PlanAccessService.java (Zarządzanie uprawnieniami koordynatora oraz spójnością zapisu w trybie multi-user)
 
 Harmonogram Realizacji Projektu (np. 4 Tygodnie)
 
