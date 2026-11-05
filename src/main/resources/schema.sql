@@ -1,20 +1,20 @@
-CREATE TABLE Pracownik (
+CREATE TABLE  Pracownik (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     imie VARCHAR(255),
     nazwisko VARCHAR(255)
 );
 
-CREATE TABLE GrupaStudencka (
+CREATE TABLE  GrupaStudencka (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     nazwa VARCHAR(255)
 );
 
-CREATE TABLE Przedmiot (
+CREATE TABLE  Przedmiot (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     nazwa VARCHAR(255)
 );
 
-CREATE TABLE Przydzial (
+CREATE TABLE  Przydzial (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     pracownik_id BIGINT,
     grupa_studencka_id BIGINT,
