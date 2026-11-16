@@ -1,33 +1,40 @@
-CREATE TABLE  Pracownik (
+DROP TABLE IF EXISTS assignments;
+DROP TABLE IF EXISTS courses;
+DROP TABLE IF EXISTS student_groups;
+DROP TABLE IF EXISTS employees;
+
+CREATE TABLE employees (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    imie VARCHAR(255),
-    nazwisko VARCHAR(255)
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    pensum INT NOT NULL DEFAULT 240
 );
 
-CREATE TABLE  GrupaStudencka (
+CREATE TABLE student_groups (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    nazwa VARCHAR(255)
+    name VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE  Przedmiot (
+CREATE TABLE courses (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    nazwa VARCHAR(255)
+    name VARCHAR(255) NOT NULL,
+    semester_type VARCHAR(50),
+    study_mode VARCHAR(50),
+    version BIGINT DEFAULT 0
 );
 
-CREATE TABLE  Przydzial (
+CREATE TABLE assignments (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    pracownik_id BIGINT,
-    grupa_studencka_id BIGINT,
-    przedmiot_id BIGINT,
-    FOREIGN KEY (pracownik_id) REFERENCES Pracownik(id),
-    FOREIGN KEY (grupa_studencka_id) REFERENCES GrupaStudencka(id),
-    FOREIGN KEY (przedmiot_id) REFERENCES Przedmiot(id)
-    z_bledami BOOLEAN DEFAULT FALSE,
-    komunikaty_bledow VARCHAR(1000),
-
-    CREATE TABLE Przedmiot (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    nazwa VARCHAR(255),
-    wersja BIGINT DEFAULT 0
-
+    employee_id BIGINT NOT NULL,
+    student_group_id BIGINT,
+    course_id BIGINT NOT NULL,
+    lecture_hours INT DEFAULT 0,
+    classes_hours INT DEFAULT 0,
+    lab_hours INT DEFAULT 0,
+    project_hours INT DEFAULT 0,
+    has_errors BOOLEAN DEFAULT FALSE,
+    error_messages VARCHAR(1000),
+    FOREIGN KEY (employee_id) REFERENCES employees(id),
+    FOREIGN KEY (student_group_id) REFERENCES student_groups(id),
+    FOREIGN KEY (course_id) REFERENCES courses(id)
 );
