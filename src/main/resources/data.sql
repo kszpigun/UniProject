@@ -1,11 +1,18 @@
-INSERT INTO Pracownik (imie, nazwisko) VALUES ('Jan', 'Kowalski');
-INSERT INTO Pracownik (imie, nazwisko) VALUES ('Anna', 'Nowak');
+-- Przykładowi pracownicy z limitem pensum
+INSERT INTO employees (first_name, last_name, pensum) VALUES ('Jan', 'Kowalski', 240);
+INSERT INTO employees (first_name, last_name, pensum) VALUES ('Anna', 'Nowak', 180);
 
-INSERT INTO GrupaStudencka (nazwa) VALUES ('Informatyka 1A');
-INSERT INTO GrupaStudencka (nazwa) VALUES ('Informatyka 1B');
+-- Przykładowe grupy studenckie
+INSERT INTO student_groups (name) VALUES ('Informatyka 1A');
+INSERT INTO student_groups (name) VALUES ('Informatyka 1B');
 
-INSERT INTO Przedmiot (nazwa) VALUES ('Bazy Danych');
-INSERT INTO Przedmiot (nazwa) VALUES ('Programowanie w Java');
+-- Przykładowe przedmioty z określonym semestrem i trybem studiów
+INSERT INTO courses (name, semester_type, study_mode, version) VALUES ('Bazy Danych', 'Zimowy', 'Stacjonarne', 0);
+INSERT INTO courses (name, semester_type, study_mode, version) VALUES ('Programowanie w Java', 'Letni', 'Niestacjonarne', 0);
 
-INSERT INTO Przydzial (pracownik_id, grupa_studencka_id, przedmiot_id) VALUES (1, 1, 1);
-INSERT INTO Przydzial (pracownik_id, grupa_studencka_id, przedmiot_id) VALUES (2, 2, 2);/* Przykładowe dane do testów
+-- Przykładowe przydziały z rozbiciem na godziny (W/C/L/P) oraz flagami błędów
+INSERT INTO assignments (employee_id, student_group_id, course_id, lecture_hours, classes_hours, lab_hours, project_hours, has_errors, error_messages)
+VALUES (1, 1, 1, 30, 0, 30, 0, FALSE, NULL);
+
+INSERT INTO assignments (employee_id, student_group_id, course_id, lecture_hours, classes_hours, lab_hours, project_hours, has_errors, error_messages)
+VALUES (2, 2, 2, 15, 15, 30, 15, FALSE, NULL);
